@@ -155,6 +155,16 @@ namespace AppAlgoritmosPseudoaleatorios
             pseudoaleatorios.Clear();
         }
 
+        private bool areEmpty()
+        {
+            bool empty = false;
+            empty = string.IsNullOrEmpty(xTextBox.Text);
+            empty = string.IsNullOrEmpty(aTextBox.Text);
+            empty = string.IsNullOrEmpty(cTextBox.Text);
+            empty = string.IsNullOrEmpty(mTextBox.Text);
+            return empty;
+        }
+
         private void VerificarOpcSeleccionada(GroupBox opciones)
         {
 
@@ -261,13 +271,31 @@ namespace AppAlgoritmosPseudoaleatorios
         #region congruencial cuadratico
         private void AlgoCuadratico()
         {
-            /*los numeros del textBox estan en tipo "string" (texto), hay que convertirlos a
-              int (numeros) para hacer operaciones con ellos */
-            int x = int.Parse(xTextBox.Text);
-            int a = int.Parse(aTextBox.Text);
-            int b = int.Parse(bTextBox.Text);
-            int c = int.Parse(cTextBox.Text);
-            int m = int.Parse(mTextBox.Text);
+            int x=0;
+            int a=0;
+            int b = 0;
+            int c = 0;
+            int m = 0;
+            bool repetir;
+            do
+            {
+                if (areEmpty() || string.IsNullOrEmpty(bTextBox.Text))
+                {
+                    repetir = true;
+                    MessageBox.Show("Llenar todas las casillas");
+                    return;
+                }
+                else
+                {
+                    repetir = false;
+                    x = int.Parse(xTextBox.Text);
+                    a = int.Parse(aTextBox.Text);
+                    b = int.Parse(bTextBox.Text);
+                    c = int.Parse(cTextBox.Text);
+                    m = int.Parse(mTextBox.Text);
+                }
+            }
+            while (repetir);
             //se agrega x inicial a la lista
             pseudoaleatorios.Add(x);
             decimal r;
@@ -304,12 +332,32 @@ namespace AppAlgoritmosPseudoaleatorios
         #region algoritmo lineal
         private void AlgoLineal()
         {
-            /*los numeros del textBox estan en tipo "string" (texto), hay que convertirlos a
+            //se declaran variables
+            int x = 0;
+            int a = 0;
+            int c = 0;
+            int m = 0;
+            bool repetir;
+            do
+            {
+                if (areEmpty())
+                {
+                    repetir = true;
+                    MessageBox.Show("Llenar todas las casillas");
+                    return;
+                }
+                else
+                {
+                    repetir = false;
+                    /*los numeros del textBox estan en tipo "string" (texto), hay que convertirlos a
               int (numeros) para hacer operaciones con ellos */
-            int x = int.Parse(xTextBox.Text);
-            int a = int.Parse(aTextBox.Text);
-            int c = int.Parse(cTextBox.Text);
-            int m = int.Parse(mTextBox.Text);
+                    x = int.Parse(xTextBox.Text);
+                    a = int.Parse(aTextBox.Text);
+                    c = int.Parse(cTextBox.Text);
+                    m = int.Parse(mTextBox.Text);
+                }
+            }
+            while (repetir);
             //se agrega x inicial a la lista
             pseudoaleatorios.Add(x);
             decimal r;
