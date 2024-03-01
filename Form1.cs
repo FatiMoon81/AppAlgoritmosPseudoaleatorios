@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace AppAlgoritmosPseudoaleatorios
 {
@@ -221,7 +222,7 @@ namespace AppAlgoritmosPseudoaleatorios
             try
             {
                 //definimos variables
-
+                long y;
                 //obtenemos la semilla y la llamamos 'x'.
                 long x = long.Parse(xTextBox.Text);
                 //obtenemos el largo de la semilla.
@@ -245,7 +246,7 @@ namespace AppAlgoritmosPseudoaleatorios
 
                 do
                 {
-                    x = ObtenerSiguienteNumero(x,d);
+                    (x,y) = ObtenerSiguienteNumero(x,d);
                     repetido = pseudoaleatorios.Contains((int)x);
 
                     if (repetido == false)
@@ -254,8 +255,11 @@ namespace AppAlgoritmosPseudoaleatorios
                         pseudoaleatorios.Add((int)x);
                         //se obtiene r
                         r = (decimal)x / 10000;
-                        //se imprime el nuevo número en la caja de texto
-                        rTextBox.AppendText(r.ToString() + "\r\n");
+                        //se imprime el cuadrado de nuestra raiz, laseleccion del medio de la raiz y r
+                        rTextBox.AppendText($"{y.ToString().PadRight(10)} | {x.ToString().PadRight(10)} | {r}\r\n");
+
+
+                        //rTextBox.AppendText(y + " |\t " + x + " |\t " +r.ToString() + "\r\n");
                     }
                 }
                 while (repetido == false);
@@ -269,7 +273,7 @@ namespace AppAlgoritmosPseudoaleatorios
             
         }
 
-        public long ObtenerSiguienteNumero(long x, int d)
+        public Tuple <long,long> ObtenerSiguienteNumero(long x, int d)
         {
             long y = x * x;
             string yStr = y.ToString();
@@ -286,7 +290,7 @@ namespace AppAlgoritmosPseudoaleatorios
             //creamos una nueva subcadena de valores de largo d
             yStr = yStr.Substring((n - d) / 2, d); // Utiliza (n - d) / 2 como índice de inicio
             x = long.Parse(yStr);
-            return x;
+            return Tuple.Create(x,y);
         }
 
 

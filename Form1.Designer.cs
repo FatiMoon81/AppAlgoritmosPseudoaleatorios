@@ -61,12 +61,12 @@
             // 
             // rTextBox
             // 
-            this.rTextBox.Location = new System.Drawing.Point(525, 50);
+            this.rTextBox.Location = new System.Drawing.Point(476, 50);
             this.rTextBox.Multiline = true;
             this.rTextBox.Name = "rTextBox";
             this.rTextBox.ReadOnly = true;
             this.rTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.rTextBox.Size = new System.Drawing.Size(202, 280);
+            this.rTextBox.Size = new System.Drawing.Size(324, 280);
             this.rTextBox.TabIndex = 10;
             // 
             // cantidadLabel
