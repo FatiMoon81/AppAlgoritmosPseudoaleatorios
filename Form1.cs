@@ -252,8 +252,8 @@ namespace AppAlgoritmosPseudoaleatorios
                     {
                         //se agrega el nuevo número a la lista
                         pseudoaleatorios.Add((int)x);
-
-                        r = (decimal)x / 100;
+                        //se obtiene r
+                        r = (decimal)x / 10000;
                         //se imprime el nuevo número en la caja de texto
                         rTextBox.AppendText(r.ToString() + "\r\n");
                     }
@@ -269,15 +269,26 @@ namespace AppAlgoritmosPseudoaleatorios
             
         }
 
-        public long ObtenerSiguienteNumero(long semilla, int digitos)
+        public long ObtenerSiguienteNumero(long x, int d)
         {
-            long cuadrado = semilla * semilla;
-            string cuadradoStr = cuadrado.ToString().PadLeft(digitos * 2, '0');
-            int inicio = (cuadradoStr.Length - digitos) / 2;
-            string numeroStr = cuadradoStr.Substring(inicio, digitos);
-            semilla = long.Parse(numeroStr);
-            return semilla;
+            long y = x * x;
+            string yStr = y.ToString();
+            int n = yStr.Length;
+
+            // Verificar si la cantidad de digitos de nuestro numero al cuadrado es impar o si nuestros digitos n son menores que los digitos de nuestra semilla/'x'
+            while (n % 2 != 0 || n < d)
+            {
+                // Agregar ceros a la izquierda para hacer el cuadrado de longitud par
+                yStr = "0" + yStr;
+                n++; // Incrementar la longitud después de agregar un cero
+            }
+
+            //creamos una nueva subcadena de valores de largo d
+            yStr = yStr.Substring((n - d) / 2, d); // Utiliza (n - d) / 2 como índice de inicio
+            x = long.Parse(yStr);
+            return x;
         }
+
 
         #endregion
 
