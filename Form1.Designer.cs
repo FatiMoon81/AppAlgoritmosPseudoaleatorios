@@ -248,7 +248,7 @@
             this.Controls.Add(this.rTextBox);
             this.Controls.Add(this.CalcularButton);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Algoritmos de Números Pseudoaleatorios";
             this.AlgoritmosGroupBox.ResumeLayout(false);
             this.AlgoritmosGroupBox.PerformLayout();
             this.ResumeLayout(false);

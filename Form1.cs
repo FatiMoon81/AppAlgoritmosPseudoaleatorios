@@ -25,6 +25,7 @@ namespace AppAlgoritmosPseudoaleatorios
 
         private void CalcularButton_Click(object sender, EventArgs e)
         {
+            Limpiar();
             switch (algoritmo)
             {
                 case 1://cuadrados medios
@@ -34,49 +35,11 @@ namespace AppAlgoritmosPseudoaleatorios
                     AlgoLineal();
                     break;
                 case 3://cuadratico
+                    AlgoCuadratico();
                     break;
             }
         }
 
-        private void AlgoLineal()
-        {
-            /*los numeros del textBox estan en tipo "string" (texto), hay que convertirlos a
-              int (numeros) para hacer operaciones con ellos */
-            int x = int.Parse(xTextBox.Text);
-            int a = int.Parse(aTextBox.Text);
-            int c = int.Parse(cTextBox.Text);
-            int m = int.Parse(mTextBox.Text);
-            //se agrega x inicial a la lista
-            pseudoaleatorios.Add(x);
-            decimal r;
-            //este guarda si x ya se repitió
-            bool repetido;
-            /*el codigo se ejecutará una primera vez, y después se seguirá ejecutando
-            mientras se cumpla la condicion while*/
-            do
-            {
-                //fórmula del algoritmo. % es igual a mod
-                x = (a * x + c) % m;
-                //esta función revisa si la raiz generada ya existe en la lista
-                //si existe, repetido = true. Si no, repetido = false
-                repetido = pseudoaleatorios.Contains(x);
-                //si no está repetido, hace lo siguiente
-                if (repetido == false)
-                {
-                    //se agrega el nuevo número a la lista
-                    pseudoaleatorios.Add(x);
-
-                    r = (decimal)x / 100;
-                    //se imprime el nuevo número en la caja de texto
-                    rTextBox.AppendText(r.ToString() + "\r\n");
-                }
-            }
-            //si el número no está repetido, se repite el código
-            while (repetido == false);
-            //cuando se repite pasa a lo siguiente
-            //imprime la cantidad de números que se calcularon
-            cantidadTextBox.Text = pseudoaleatorios.Count.ToString();
-        }
 
         private void mediosRButton_CheckedChanged(object sender, EventArgs e)
         {
@@ -186,11 +149,10 @@ namespace AppAlgoritmosPseudoaleatorios
 
         private void Limpiar()
         {
-            xTextBox.Text = string.Empty;
-            aTextBox.Text = string.Empty;
-            bTextBox.Text = string.Empty;
-            cTextBox.Text = string.Empty;
-            mTextBox.Text = string.Empty;
+            //borra los resultados del textbox
+            rTextBox.Text = string.Empty;
+            //borra los resultados de la lista
+            pseudoaleatorios.Clear();
         }
 
         private void VerificarOpcSeleccionada(GroupBox opciones)
@@ -297,9 +259,88 @@ namespace AppAlgoritmosPseudoaleatorios
         #endregion
 
         #region congruencial cuadratico
+        private void AlgoCuadratico()
+        {
+            /*los numeros del textBox estan en tipo "string" (texto), hay que convertirlos a
+              int (numeros) para hacer operaciones con ellos */
+            int x = int.Parse(xTextBox.Text);
+            int a = int.Parse(aTextBox.Text);
+            int b = int.Parse(bTextBox.Text);
+            int c = int.Parse(cTextBox.Text);
+            int m = int.Parse(mTextBox.Text);
+            //se agrega x inicial a la lista
+            pseudoaleatorios.Add(x);
+            decimal r;
+            //este guarda si x ya se repitió
+            bool repetido;
+            /*el codigo se ejecutará una primera vez, y después se seguirá ejecutando
+            mientras se cumpla la condicion while*/
+            do
+            {
+                //fórmula del algoritmo. % es igual a mod
+                x = (a * (int)Math.Pow(x, 2) + b * x + c) % m;
+                //esta función revisa si la raiz generada ya existe en la lista
+                //si existe, repetido = true. Si no, repetido = false
+                repetido = pseudoaleatorios.Contains(x);
+                //si no está repetido, hace lo siguiente
+                if (repetido == false)
+                {
+                    //se agrega el nuevo número a la lista
+                    pseudoaleatorios.Add(x);
+
+                    r = (decimal)x / 100;
+                    //se imprime el nuevo número en la caja de texto
+                    rTextBox.AppendText(r.ToString() + "\r\n");
+                }
+            }
+            //si el número no está repetido, se repite el código
+            while (repetido == false);
+            //cuando se repite pasa a lo siguiente
+            //imprime la cantidad de números que se calcularon
+            cantidadTextBox.Text = pseudoaleatorios.Count.ToString();
+        }
         #endregion
 
         #region algoritmo lineal
+        private void AlgoLineal()
+        {
+            /*los numeros del textBox estan en tipo "string" (texto), hay que convertirlos a
+              int (numeros) para hacer operaciones con ellos */
+            int x = int.Parse(xTextBox.Text);
+            int a = int.Parse(aTextBox.Text);
+            int c = int.Parse(cTextBox.Text);
+            int m = int.Parse(mTextBox.Text);
+            //se agrega x inicial a la lista
+            pseudoaleatorios.Add(x);
+            decimal r;
+            //este guarda si x ya se repitió
+            bool repetido;
+            /*el codigo se ejecutará una primera vez, y después se seguirá ejecutando
+            mientras se cumpla la condicion while*/
+            do
+            {
+                //fórmula del algoritmo. % es igual a mod
+                x = (a * x + c) % m;
+                //esta función revisa si la raiz generada ya existe en la lista
+                //si existe, repetido = true. Si no, repetido = false
+                repetido = pseudoaleatorios.Contains(x);
+                //si no está repetido, hace lo siguiente
+                if (repetido == false)
+                {
+                    //se agrega el nuevo número a la lista
+                    pseudoaleatorios.Add(x);
+
+                    r = (decimal)x / 100;
+                    //se imprime el nuevo número en la caja de texto
+                    rTextBox.AppendText(r.ToString() + "\r\n");
+                }
+            }
+            //si el número no está repetido, se repite el código
+            while (repetido == false);
+            //cuando se repite pasa a lo siguiente
+            //imprime la cantidad de números que se calcularon
+            cantidadTextBox.Text = pseudoaleatorios.Count.ToString();
+        }
         #endregion
     }
 }

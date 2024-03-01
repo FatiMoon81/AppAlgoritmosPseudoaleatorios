@@ -35,12 +35,14 @@ namespace AppAlgoritmosPseudoaleatorios
                     AlgoLineal();
                     break;
                 case 3://cuadratico
+                    AlgoCuadratico();
                     break;
             }
         }
 
         private void AlgoLineal()
         {
+            Limpiar();
             /*los numeros del textBox estan en tipo "string" (texto), hay que convertirlos a
               int (numeros) para hacer operaciones con ellos */
             int x = int.Parse(xTextBox.Text);
@@ -58,6 +60,48 @@ namespace AppAlgoritmosPseudoaleatorios
             {
                 //fórmula del algoritmo. % es igual a mod
                 x = (a * x + c) % m;
+                //esta función revisa si la raiz generada ya existe en la lista
+                //si existe, repetido = true. Si no, repetido = false
+                repetido = pseudoaleatorios.Contains(x);
+                //si no está repetido, hace lo siguiente
+                if (repetido == false)
+                {
+                    //se agrega el nuevo número a la lista
+                    pseudoaleatorios.Add(x);
+
+                    r = (decimal)x / 100;
+                    //se imprime el nuevo número en la caja de texto
+                    rTextBox.AppendText(r.ToString() + "\r\n");
+                }
+            }
+            //si el número no está repetido, se repite el código
+            while (repetido == false);
+            //cuando se repite pasa a lo siguiente
+            //imprime la cantidad de números que se calcularon
+            cantidadTextBox.Text = pseudoaleatorios.Count.ToString();
+        }
+
+        private void AlgoCuadratico()
+        {
+            Limpiar();
+            /*los numeros del textBox estan en tipo "string" (texto), hay que convertirlos a
+              int (numeros) para hacer operaciones con ellos */
+            int x = int.Parse(xTextBox.Text);
+            int a = int.Parse(aTextBox.Text);
+            int b = int.Parse(bTextBox.Text);
+            int c = int.Parse(cTextBox.Text);
+            int m = int.Parse(mTextBox.Text);
+            //se agrega x inicial a la lista
+            pseudoaleatorios.Add(x);
+            decimal r;
+            //este guarda si x ya se repitió
+            bool repetido;
+            /*el codigo se ejecutará una primera vez, y después se seguirá ejecutando
+            mientras se cumpla la condicion while*/
+            do
+            {
+                //fórmula del algoritmo. % es igual a mod
+                x = (a*(int)Math.Pow(x,2)+b*x+c)%m;
                 //esta función revisa si la raiz generada ya existe en la lista
                 //si existe, repetido = true. Si no, repetido = false
                 repetido = pseudoaleatorios.Contains(x);
@@ -127,90 +171,16 @@ namespace AppAlgoritmosPseudoaleatorios
             }
         }
 
-        private void lineal()
-        {
-            VerificarOpcSeleccionada(AlgoritmosGroupBox);
-
-            /*los numeros del textBox estan en tipo "string" (texto), hay que convertirlos a
-              int (numeros) para hacer operaciones con ellos */
-
-            try
-            {
-                int x = int.Parse(xTextBox.Text);
-                int a = int.Parse(aTextBox.Text);
-                int c = int.Parse(cTextBox.Text);
-                int m = int.Parse(mTextBox.Text);
-                //se agrega x inicial a la lista
-                pseudoaleatorios.Add(x);
-                //decimal r;
-                //este guarda si x ya se repitió
-                bool repetido;
-                decimal r;
-                /*el codigo se ejecutará una primera vez, y después se seguirá ejecutando
-                mientras se cumpla la condicion while*/
-                do
-                {
-                    //fórmula del algoritmo. % es igual a mod
-                    x = (a * x + c) % m;
-                    //esta función revisa si la raiz generada ya existe en la lista
-                    //si existe, repetido = true. Si no, repetido = false
-                    repetido = pseudoaleatorios.Contains(x);
-                    //si no está repetido, hace lo siguiente
-                    if (repetido == false)
-                    {
-                        //se agrega el nuevo número a la lista
-                        pseudoaleatorios.Add(x);
-                        //se imprime el nuevo número en la caja de texto
-                        //rTextBox.AppendText(x + "\r\n");
-                        r = x / 100;
-                        rTextBox.AppendText(r.ToString() + "\r\n");
-                    }
-                }
-                //si el número no está repetido, se repite el código
-                while (repetido == false);
-
-                //cuando se repite pasa a lo siguiente
-                //imprime la cantidad de números que se calcularon
-                cantidadTextBox.Text = pseudoaleatorios.Count.ToString();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.StackTrace);
-            }
-            finally
-            {
-                //se limpian todos los textbox para el siguiente calculo
-                Limpiar();
-            }
-        }
 
 
         private void Limpiar()
         {
-            xTextBox.Text = string.Empty;
-            aTextBox.Text = string.Empty;
-            bTextBox.Text = string.Empty;
-            cTextBox.Text = string.Empty;
-            mTextBox.Text = string.Empty;
+            //borra los resultados del textbox
+            rTextBox.Text = string.Empty;
+            //borra los resultados de la lista
+            pseudoaleatorios.Clear();
         }
 
-        private void VerificarOpcSeleccionada(GroupBox opciones)
-        {
-
-            // Itera a través de todos los controles dentro del GroupBox
-            foreach (Control control in opciones.Controls)
-            {
-                // Verifica si el control es un RadioButton y está marcado
-                if (control is RadioButton && ((RadioButton)control).Checked)
-                {
-                    // Si se encuentra un RadioButton seleccionado, muestra un mensaje
-                    MessageBox.Show("Algoritmo seleccionado");
-                    return; // Termina la verificación después de encontrar un RadioButton seleccionado
-                }
-            }
-            // Si ningún RadioButton está seleccionado, muestra un mensaje
-            MessageBox.Show("Seleccione un algoritmo.");
-        }
 
         #endregion
 
