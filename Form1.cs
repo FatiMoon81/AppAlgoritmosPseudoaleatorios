@@ -227,14 +227,13 @@ namespace AppAlgoritmosPseudoaleatorios
                         pseudoaleatorios.Add((int)x);
                         //se obtiene r
                         r = (decimal)x / 10000;
-                        //se imprime el cuadrado de nuestra raiz, laseleccion del medio de la raiz y r
+                        //se imprime el cuadrado de nuestra raiz, la seleccion de enmedio de la raiz y r
                         rTextBox.AppendText($"{y.ToString().PadRight(10)} | {x.ToString().PadRight(10)} | {r}\r\n");
-
-
                         //rTextBox.AppendText(y + " |\t " + x + " |\t " +r.ToString() + "\r\n");
                     }
-                }
+                }//si se haya un numero repetido dentro de nuestra lista el codigo para
                 while (repetido == false);
+                //muestra la cantidad de numeros conenidos en nuestra lista
                 cantidadTextBox.Text = pseudoaleatorios.Count.ToString();
             }
             catch (Exception e){
@@ -242,11 +241,11 @@ namespace AppAlgoritmosPseudoaleatorios
                 MessageBox.Show("Error: " + e.Message);
             }
 
-            
         }
 
         public Tuple <long,long> ObtenerSiguienteNumero(long x, int d)
         {
+            //inicializamos varaibles
             long y = x * x;
             string yStr = y.ToString();
             int n = yStr.Length;
