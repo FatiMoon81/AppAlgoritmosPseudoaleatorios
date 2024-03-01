@@ -27,7 +27,7 @@ namespace AppAlgoritmosPseudoaleatorios
             switch (algoritmo)
             {
                 case 1://cuadrados medios
-
+                    AlgoCuadradosMedios();
                     break;
                 case 2://lineal
                     AlgoLineal();
@@ -214,7 +214,70 @@ namespace AppAlgoritmosPseudoaleatorios
 
         #region cuadrados medios
 
+        private void AlgoCuadradosMedios()
+        {
+            //el try es utilizado como manera segura de correr las instrucciones,
+            //ayuda a que no 'crashee' el programa si algun error logico humano ocurre.
+            try
+            {
+                //definimos variables
 
+                //obtenemos la semilla y la llamamos 'x'.
+                long x = long.Parse(xTextBox.Text);
+                //obtenemos el largo de la semilla.
+                int d = x.ToString().Length;
+                //
+                decimal r;
+                //
+                bool repetido;
+
+                //Verificamos que la semilla tenga 4 digitos o mas.
+                if (!(d > 3))
+                {
+                    //de lo contrario mostramos el mensaje, vaciamos la casilla y regresamos a menu.
+                    MessageBox.Show("Ingrese una semilla de al menos 4 digitos.");
+                    xTextBox.Text = string.Empty;
+                    return;
+                }
+
+                //Ya podemos empezar a hacer calculos, agregamos la semilla a la lista
+                pseudoaleatorios.Add((int)x);
+
+                do
+                {
+                    x = ObtenerSiguienteNumero(x,d);
+                    repetido = pseudoaleatorios.Contains((int)x);
+
+                    if (repetido == false)
+                    {
+                        //se agrega el nuevo número a la lista
+                        pseudoaleatorios.Add((int)x);
+
+                        r = (decimal)x / 100;
+                        //se imprime el nuevo número en la caja de texto
+                        rTextBox.AppendText(r.ToString() + "\r\n");
+                    }
+                }
+                while (repetido == false);
+                cantidadTextBox.Text = pseudoaleatorios.Count.ToString();
+            }
+            catch (Exception e){
+                //mostramos el mensaje de error generado
+                MessageBox.Show("Error: " + e.Message);
+            }
+
+            
+        }
+
+        public long ObtenerSiguienteNumero(long semilla, int digitos)
+        {
+            long cuadrado = semilla * semilla;
+            string cuadradoStr = cuadrado.ToString().PadLeft(digitos * 2, '0');
+            int inicio = (cuadradoStr.Length - digitos) / 2;
+            string numeroStr = cuadradoStr.Substring(inicio, digitos);
+            semilla = long.Parse(numeroStr);
+            return semilla;
+        }
 
         #endregion
 
