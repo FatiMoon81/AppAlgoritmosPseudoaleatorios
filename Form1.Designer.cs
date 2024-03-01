@@ -46,6 +46,7 @@
             this.aLabel = new System.Windows.Forms.Label();
             this.cLabel = new System.Windows.Forms.Label();
             this.mLabel = new System.Windows.Forms.Label();
+            this.LimpiarButton = new System.Windows.Forms.Button();
             this.AlgoritmosGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -146,9 +147,9 @@
             this.AlgoritmosGroupBox.Controls.Add(this.cuadraticoRButton);
             this.AlgoritmosGroupBox.Controls.Add(this.linealRButton);
             this.AlgoritmosGroupBox.Controls.Add(this.mediosRButton);
-            this.AlgoritmosGroupBox.Location = new System.Drawing.Point(32, 112);
+            this.AlgoritmosGroupBox.Location = new System.Drawing.Point(12, 50);
             this.AlgoritmosGroupBox.Name = "AlgoritmosGroupBox";
-            this.AlgoritmosGroupBox.Size = new System.Drawing.Size(200, 143);
+            this.AlgoritmosGroupBox.Size = new System.Drawing.Size(200, 130);
             this.AlgoritmosGroupBox.TabIndex = 13;
             this.AlgoritmosGroupBox.TabStop = false;
             this.AlgoritmosGroupBox.Text = "Algoritmos";
@@ -165,7 +166,7 @@
             // xTextBox
             // 
             this.xTextBox.Location = new System.Drawing.Point(293, 102);
-            this.xTextBox.Mask = "999999999999";
+            this.xTextBox.Mask = "9999999999999";
             this.xTextBox.Name = "xTextBox";
             this.xTextBox.Size = new System.Drawing.Size(100, 22);
             this.xTextBox.TabIndex = 17;
@@ -227,11 +228,22 @@
             this.mLabel.Text = "m";
             this.mLabel.Visible = false;
             // 
+            // LimpiarButton
+            // 
+            this.LimpiarButton.Location = new System.Drawing.Point(725, 415);
+            this.LimpiarButton.Name = "LimpiarButton";
+            this.LimpiarButton.Size = new System.Drawing.Size(75, 23);
+            this.LimpiarButton.TabIndex = 24;
+            this.LimpiarButton.Text = "Limpiar";
+            this.LimpiarButton.UseVisualStyleBackColor = true;
+            this.LimpiarButton.Click += new System.EventHandler(this.LimpiarButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(878, 450);
+            this.Controls.Add(this.LimpiarButton);
             this.Controls.Add(this.mLabel);
             this.Controls.Add(this.cLabel);
             this.Controls.Add(this.aLabel);
@@ -276,7 +288,8 @@
         private System.Windows.Forms.Label xLabel;
         private System.Windows.Forms.Label aLabel;
         private System.Windows.Forms.Label cLabel;
-        private System.Windows.Forms.Label mLabel; 
+        private System.Windows.Forms.Label mLabel;
+        private System.Windows.Forms.Button LimpiarButton;
     }
 }
 
