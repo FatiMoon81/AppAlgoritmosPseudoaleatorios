@@ -15,7 +15,6 @@ namespace AppAlgoritmosPseudoaleatorios
     {
         //Se crea una lista que contenga los números calculados
         List<int> pseudoaleatorios = new List<int>();
-        List<Dictionary<string, string>> pseudoaleatoriosv2 = new List<Dictionary<string,string>>();
         //este es para guardar que algoritmo se esta usando en el momento
         //1=cuadrados medios, 2=lineal, 3=cuadratico
         int algoritmo = 1;
