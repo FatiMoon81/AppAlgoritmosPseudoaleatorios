@@ -47,7 +47,9 @@
             this.cLabel = new System.Windows.Forms.Label();
             this.mLabel = new System.Windows.Forms.Label();
             this.LimpiarButton = new System.Windows.Forms.Button();
+            this.RDataGridView = new System.Windows.Forms.DataGridView();
             this.AlgoritmosGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.RDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // CalcularButton
@@ -238,11 +240,22 @@
             this.LimpiarButton.UseVisualStyleBackColor = true;
             this.LimpiarButton.Click += new System.EventHandler(this.LimpiarButton_Click);
             // 
+            // RDataGridView
+            // 
+            this.RDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.RDataGridView.Location = new System.Drawing.Point(476, 50);
+            this.RDataGridView.Name = "RDataGridView";
+            this.RDataGridView.RowHeadersWidth = 51;
+            this.RDataGridView.RowTemplate.Height = 24;
+            this.RDataGridView.Size = new System.Drawing.Size(324, 280);
+            this.RDataGridView.TabIndex = 25;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(878, 450);
+            this.Controls.Add(this.RDataGridView);
             this.Controls.Add(this.LimpiarButton);
             this.Controls.Add(this.mLabel);
             this.Controls.Add(this.cLabel);
@@ -263,6 +276,7 @@
             this.Text = "Algoritmos de Números Pseudoaleatorios";
             this.AlgoritmosGroupBox.ResumeLayout(false);
             this.AlgoritmosGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.RDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -280,7 +294,6 @@
         private System.Windows.Forms.RadioButton mediosRButton;
         private System.Windows.Forms.MaskedTextBox bTextBox;
         private System.Windows.Forms.Label bLabel;
-        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.MaskedTextBox aTextBox;
         private System.Windows.Forms.MaskedTextBox xTextBox;
         private System.Windows.Forms.MaskedTextBox cTextBox;
@@ -290,6 +303,7 @@
         private System.Windows.Forms.Label cLabel;
         private System.Windows.Forms.Label mLabel;
         private System.Windows.Forms.Button LimpiarButton;
+        private System.Windows.Forms.DataGridView RDataGridView;
     }
 }
 
